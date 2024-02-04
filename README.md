@@ -6,13 +6,13 @@
 
 #### Dive in and learn React.js from scratch! Learn React, Hooks, Redux, React Router, Next.js, Best Practices and way more!
 
-### Section 1 ⏳
+### Section 1 ✅
 
 - Getting Started
 
 - JavaScript Refresher
 
-### Section 2 📌
+### Section 2 ⏳
 
 - React Essentials - Components, JSX, Props, State & More
 
