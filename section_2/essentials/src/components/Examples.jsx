@@ -27,7 +27,7 @@ const Examples = () => {
     <TabButton
       key={id}
       isSelected={content === id}
-      onSelect={() => selectHandler(id)}
+      onClick={() => selectHandler(id)}
     >
       {EXAMPLES[id].title}
     </TabButton>
