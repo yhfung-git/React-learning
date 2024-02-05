@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import Header from "./components/Header";
-import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
-import { CORE_CONCEPTS, EXAMPLES } from "./data";
+import CoreConcepts from "./components/CoreConcepts/CoreConcepts";
+import { EXAMPLES } from "./data";
 
 const App = () => {
   const [content, setContent] = useState();
@@ -38,12 +38,7 @@ const App = () => {
     <>
       <Header />
       <main>
-        <section id="core-concepts">
-          <h2>Core Concepts</h2>
-          <ul>
-            <CoreConcept concepts={CORE_CONCEPTS} />
-          </ul>
-        </section>
+        <CoreConcepts />
         <section id="examples">
           <h2>Examples</h2>
           <menu>{tabButtons}</menu>
