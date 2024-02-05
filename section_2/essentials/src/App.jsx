@@ -35,7 +35,7 @@ const App = () => {
   ));
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <section id="core-concepts">
@@ -50,7 +50,7 @@ const App = () => {
           {tabContent}
         </section>
       </main>
-    </div>
+    </>
   );
 };
 
