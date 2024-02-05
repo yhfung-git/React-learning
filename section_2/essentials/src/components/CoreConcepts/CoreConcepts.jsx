@@ -1,14 +1,14 @@
 import { CORE_CONCEPTS } from "../../data";
 import CoreConcept from "./CoreConcept";
+import Section from "../Section";
 
 const CoreConcepts = () => {
   return (
-    <section id="core-concepts">
-      <h2>Core Concepts</h2>
+    <Section id="core-concepts" title="Core Concepts">
       <ul>
         <CoreConcept concepts={CORE_CONCEPTS} />
       </ul>
-    </section>
+    </Section>
   );
 };
 

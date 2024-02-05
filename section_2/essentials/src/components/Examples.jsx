@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { EXAMPLES } from "../data";
 import TabButton from "./TabButton";
+import Section from "./Section";
 
 const Examples = () => {
   const [content, setContent] = useState();
@@ -33,11 +34,10 @@ const Examples = () => {
   ));
 
   return (
-    <section id="examples">
-      <h2>Examples</h2>
+    <Section id="examples" title="Examples">
       <menu>{tabButtons}</menu>
       {tabContent}
-    </section>
+    </Section>
   );
 };
 
