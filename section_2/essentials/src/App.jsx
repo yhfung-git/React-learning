@@ -3,10 +3,10 @@ import { useState } from "react";
 import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
-import { CORE_CONCEPTS } from "./data";
+import { CORE_CONCEPTS, EXAMPLES } from "./data";
 
 const App = () => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("components");
 
   const selectHandler = (selectedButton) => {
     setContent(selectedButton);
@@ -32,7 +32,13 @@ const App = () => {
             <TabButton onSelect={() => selectHandler("props")}>Props</TabButton>
             <TabButton onSelect={() => selectHandler("state")}>State</TabButton>
           </menu>
-          {content}
+          <div id="tab-content">
+            <h3>{EXAMPLES[content].title}</h3>
+            <p>{EXAMPLES[content].description}</p>
+            <pre>
+              <code>{EXAMPLES[content].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
