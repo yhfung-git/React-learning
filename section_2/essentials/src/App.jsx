@@ -24,6 +24,16 @@ const App = () => {
     </div>
   );
 
+  const tabButtons = Object.keys(EXAMPLES).map((id) => (
+    <TabButton
+      key={id}
+      isSelected={content === id}
+      onSelect={() => selectHandler(id)}
+    >
+      {EXAMPLES[id].title}
+    </TabButton>
+  ));
+
   return (
     <div>
       <Header />
@@ -36,14 +46,7 @@ const App = () => {
         </section>
         <section id="examples">
           <h2>Examples</h2>
-          <menu>
-            <TabButton onSelect={() => selectHandler("components")}>
-              Components
-            </TabButton>
-            <TabButton onSelect={() => selectHandler("jsx")}>JSX</TabButton>
-            <TabButton onSelect={() => selectHandler("props")}>Props</TabButton>
-            <TabButton onSelect={() => selectHandler("state")}>State</TabButton>
-          </menu>
+          <menu>{tabButtons}</menu>
           {tabContent}
         </section>
       </main>
