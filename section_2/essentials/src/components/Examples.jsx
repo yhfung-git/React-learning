@@ -3,6 +3,7 @@ import { useState } from "react";
 import { EXAMPLES } from "../data";
 import TabButton from "./TabButton";
 import Section from "./Section";
+import Tabs from "./Tabs";
 
 const Examples = () => {
   const [content, setContent] = useState();
@@ -35,8 +36,7 @@ const Examples = () => {
 
   return (
     <Section id="examples" title="Examples">
-      <menu>{tabButtons}</menu>
-      {tabContent}
+      <Tabs buttons={tabButtons}>{tabContent}</Tabs>
     </Section>
   );
 };
