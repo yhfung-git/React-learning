@@ -5,7 +5,7 @@ const Log = ({ turns, players }) => {
 
     return (
       <li key={`${row}${col}`}>
-        Player {players[player]} selected row {row + 1}, col {col + 1}
+        {players[player]} selected row {row + 1}, col {col + 1}
       </li>
     );
   });
