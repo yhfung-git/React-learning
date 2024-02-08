@@ -12,7 +12,7 @@
 
 - JavaScript Refresher
 
-### Section 2 ⏳
+### Section 2 ✅
 
 - React Essentials - Components, JSX, Props, State & More
 
@@ -20,7 +20,7 @@
 
 - React Essentials - Practice Project
 
-### Section 3 📌
+### Section 3 ⏳
 
 - Styling React Components
 
