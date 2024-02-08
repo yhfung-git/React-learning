@@ -14,10 +14,12 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
   };
 
   const renderedPlayerName = isEditing ? (
-    <input type="text" required value={playerName} onChange={handleChange} />
+    <input type="text" value={playerName} onChange={handleChange} required />
   ) : (
-    playerName
+    playerName || initialName
   );
+
+  console.log(playerName);
 
   return (
     <li className={isActive ? "active" : ""}>
@@ -25,7 +27,9 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
         <span className="player-name">{renderedPlayerName}</span>
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</button>
+      <button onClick={handleEditClick} disabled={playerName === ""}>
+        {isEditing ? "Save" : "Edit"}
+      </button>
     </li>
   );
 };
