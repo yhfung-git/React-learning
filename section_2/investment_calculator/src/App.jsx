@@ -26,7 +26,9 @@ const App = () => {
       <Form values={values} onChange={handleChange} />
       {isValid && <Result values={values} />}
       {!isValid && (
-        <p className="center">Please provide values for all fields.</p>
+        <p className="center">
+          Please enter values greater than 1 for all fields.
+        </p>
       )}
     </>
   );
