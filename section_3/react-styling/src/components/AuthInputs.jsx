@@ -24,7 +24,7 @@ const AuthInputs = () => {
     <div id="auth-inputs">
       <div className="controls">
         <p>
-          <label>Email</label>
+          <label className={emailNotValid ? "invalid" : undefined}>Email</label>
           <input
             type="email"
             className={emailNotValid ? "invalid" : undefined}
@@ -32,7 +32,9 @@ const AuthInputs = () => {
           />
         </p>
         <p>
-          <label>Password</label>
+          <label className={passwordNotValid ? "invalid" : undefined}>
+            Password
+          </label>
           <input
             type="password"
             className={passwordNotValid ? "invalid" : undefined}
