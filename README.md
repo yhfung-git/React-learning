@@ -20,13 +20,13 @@
 
 - React Essentials - Practice Project
 
-### Section 3 ⏳
+### Section 3 ✅
 
 - Styling React Components
 
 - Debugging React Apps
 
-### Section 4 📌
+### Section 4 ⏳
 
 - Working with Refs & Portals
 
