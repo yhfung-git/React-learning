@@ -28,17 +28,38 @@ const App = () => {
     });
   };
 
+  const handleAddProject = (projectData) => {
+    const id = Date.now();
+    const newProject = { id, ...projectData };
+
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [newProject, ...prevState.projects],
+      };
+    });
+  };
+
   let content;
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onCancel={handleCancelAddProject} />;
+    content = (
+      <NewProject
+        onCancel={handleCancelAddProject}
+        onAddProject={handleAddProject}
+      />
+    );
   } else if (projectsState.selectedProjectId === undefined) {
     content = <Homepage onStartAddProject={handleStartAddProject} />;
   }
 
   return (
     <main className="flex gap-8 mt-8 h-screen">
-      <Sidebar onStartAddProject={handleStartAddProject} />
+      <Sidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectsState.projects}
+      />
       {content}
     </main>
   );
