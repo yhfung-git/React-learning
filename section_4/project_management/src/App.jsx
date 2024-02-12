@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import NewProject from "./components/NewProject";
 import Homepage from "./components/Homepage";
+import Project from "./components/Project";
 
 const App = () => {
   const [projectsState, setProjectsState] = useState({
@@ -41,6 +42,29 @@ const App = () => {
     });
   };
 
+  const handleSelectProject = (id) => {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+      };
+    });
+  };
+
+  const handleDeleteProject = () => {
+    setProjectsState((prevState) => {
+      const updatedProjects = prevState.projects.filter(
+        (project) => project.id !== prevState.selectedProjectId
+      );
+
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: updatedProjects,
+      };
+    });
+  };
+
   let content;
 
   if (projectsState.selectedProjectId === null) {
@@ -52,6 +76,11 @@ const App = () => {
     );
   } else if (projectsState.selectedProjectId === undefined) {
     content = <Homepage onStartAddProject={handleStartAddProject} />;
+  } else {
+    const project = projectsState.projects.find(
+      (project) => project.id === projectsState.selectedProjectId
+    );
+    content = <Project project={project} onDelete={handleDeleteProject} />;
   }
 
   return (
@@ -59,6 +88,8 @@ const App = () => {
       <Sidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
+        onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {content}
     </main>
