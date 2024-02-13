@@ -41,7 +41,7 @@ const NewProject = ({ onCancel, onAddProject }) => {
           field.
         </p>
       </Modal>
-      <div className="w-[35rem] my-16 mx-auto">
+      <div className="w-[35rem] my-16">
         <menu className="flex items-center justify-end gap-4 my-4 rounded">
           <li>
             <button
