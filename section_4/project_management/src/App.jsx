@@ -11,6 +11,15 @@ const App = () => {
     projects: [],
   });
 
+  const handleHomepage = () => {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  };
+
   const handleStartAddProject = () => {
     setProjectsState((prevState) => {
       return {
@@ -131,6 +140,7 @@ const App = () => {
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
         selectedProjectId={projectsState.selectedProjectId}
+        onHomepage={handleHomepage}
       />
       <main className="mx-auto">{content}</main>
     </div>
