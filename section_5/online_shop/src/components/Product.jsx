@@ -1,4 +1,10 @@
-const Product = ({ id, image, title, price, description, onAddToCart }) => {
+import { useContext } from "react";
+
+import { CartContext } from "../store/CartContext";
+
+const Product = ({ id, image, title, price, description }) => {
+  const { onAddToCart } = useContext(CartContext);
+
   return (
     <article className="product">
       <img src={image} alt={title} />
