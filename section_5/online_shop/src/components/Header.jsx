@@ -2,6 +2,7 @@ import { useRef, useContext } from "react";
 
 import { CartContext } from "../store/CartContext.jsx";
 import CartModal from "./CartModal.jsx";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const { items } = useContext(CartContext);
@@ -29,7 +30,7 @@ const Header = () => {
       <CartModal ref={modal} title="Your Cart" actions={modalActions} />
       <header id="main-header">
         <div id="main-title">
-          <img src="logo.png" alt="Elegant model" />
+          <img src={logo} alt="Elegant model" />
           <h1>Elegant Online Shop</h1>
         </div>
         <p>
