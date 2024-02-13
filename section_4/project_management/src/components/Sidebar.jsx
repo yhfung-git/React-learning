@@ -19,7 +19,7 @@ const Sidebar = ({
       <ul className="mt-8">
         {projects.map((project) => {
           let buttonClasses =
-            "w-full text-left px-2 py-1 my-1 capitalize rounded-sm hover:text-stone-200 hover:bg-stone-800";
+            "w-full text-left px-2 py-1 my-1 capitalize rounded-sm hover:text-stone-200 hover:bg-stone-800disabled:bg-stone-800 disabled:text-stone-600 disabled:pointer-events-none";
 
           project.id === selectedProjectId
             ? (buttonClasses += " bg-stone-800 text-stone-200")
@@ -30,6 +30,7 @@ const Sidebar = ({
               <button
                 className={buttonClasses}
                 onClick={() => onSelectProject(project.id)}
+                disabled={selectedProjectId === null}
               >
                 {project.title}
               </button>
