@@ -30,13 +30,13 @@ const App = () => {
   };
 
   const handleAddProject = (projectData) => {
-    const id = Date.now();
-    const newProject = { id, ...projectData };
-
     setProjectsState((prevState) => {
+      const id = Date.now();
+      const newProject = { ...projectData, id, tasks: [] };
+
       return {
         ...prevState,
-        selectedProjectId: undefined,
+        selectedProjectId: id,
         projects: [newProject, ...prevState.projects],
       };
     });
@@ -65,6 +65,39 @@ const App = () => {
     });
   };
 
+  const handleAddTask = (text) => {
+    setProjectsState((prevState) => {
+      const id = Date.now();
+      const newTask = prevState.projects.map((project) => {
+        if (project.id === prevState.selectedProjectId) {
+          project.tasks = project.tasks.concat({ id, text });
+        }
+        return project;
+      });
+
+      return {
+        ...prevState,
+        projects: newTask,
+      };
+    });
+  };
+
+  const handleDeleteTask = (id) => {
+    setProjectsState((prevState) => {
+      const updatedTasks = prevState.projects.map((project) => {
+        if (project.id === prevState.selectedProjectId) {
+          project.tasks = project.tasks.filter((task) => task.id !== id);
+        }
+        return project;
+      });
+
+      return {
+        ...prevState,
+        projects: updatedTasks,
+      };
+    });
+  };
+
   let content;
 
   if (projectsState.selectedProjectId === null) {
@@ -80,19 +113,27 @@ const App = () => {
     const project = projectsState.projects.find(
       (project) => project.id === projectsState.selectedProjectId
     );
-    content = <Project project={project} onDelete={handleDeleteProject} />;
+
+    content = (
+      <Project
+        project={project}
+        onDelete={handleDeleteProject}
+        onAddTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
+      />
+    );
   }
 
   return (
-    <main className="flex gap-8 mt-8 h-screen">
+    <div className="flex mt-8 min-h-screen">
       <Sidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
         selectedProjectId={projectsState.selectedProjectId}
       />
-      {content}
-    </main>
+      <main className="mx-auto">{content}</main>
+    </div>
   );
 };
 
