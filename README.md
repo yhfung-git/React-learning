@@ -26,13 +26,13 @@
 
 - Debugging React Apps
 
-### Section 4 ⏳
+### Section 4 ✅
 
 - Working with Refs & Portals
 
 - Practice Project: Project Management App (with Components, State, Refs & More)
 
-### Section 5 📌
+### Section 5 ⏳
 
 - React's Context API & useReducer - Advanced State Management
 
