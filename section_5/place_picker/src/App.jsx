@@ -106,7 +106,7 @@ const App = () => {
         <Places
           title="Available Places"
           fallbackText="Sorting places by distance..."
-          places={sortedPlaces}
+          places={sortedPlaces.length > 0 ? sortedPlaces : AVAILABLE_PLACES}
           onSelectPlace={handleSelectPlace}
         />
       </main>
