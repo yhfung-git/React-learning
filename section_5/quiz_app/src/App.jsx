@@ -1,7 +1,11 @@
+import Header from "./components/Header";
+import Quiz from "./components/Quiz";
+
 const App = () => {
   return (
     <>
-      <h1>OK</h1>
+      <Header />
+      <Quiz />
     </>
   );
 };
