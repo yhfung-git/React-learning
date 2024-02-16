@@ -32,7 +32,7 @@
 
 - Practice Project: Project Management App (with Components, State, Refs & More)
 
-### Section 5 ⏳
+### Section 5 ✅
 
 - React's Context API & useReducer - Advanced State Management
 
@@ -40,7 +40,7 @@
 
 - Practice Project: Building a Quiz App
 
-### Section 6 📌
+### Section 6 ⏳
 
 - A Look Behind The Scenes Of React & Optimization Techniques
 
@@ -56,4 +56,32 @@
 
 - Practice Project: Building a Food Order App
 
-### More sections coming soon... ✍️
+### Section 8 📌
+
+- Diving into Redux (An Alternative To The Context API)
+
+- Advanced Redux
+
+- Building a Multi-Page SPA with React Router
+
+- Adding Authentication to React Apps
+
+- Deploying React Apps
+
+### Section 9 📌
+
+- React Query / Tanstack Query : Handling HTTP Requests With Ease
+
+- A (Pretty Deep Dive) Introduction to Next.js
+
+- Animating React Apps
+
+- React Patterns & Best Practices
+
+### Section 10 📌
+
+- Replacing Redux with React Hooks
+
+- Testing React Apps (Unit Tests)
+
+- React + TypeScript
