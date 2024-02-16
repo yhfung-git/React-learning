@@ -1,26 +1,53 @@
 import { useState, useCallback } from "react";
 
-import Answer from "./Answer";
+import Answers from "./Answers";
 import ProgressBar from "./ProgressBar";
 import QUESTIONS from "../questions";
 import quizComplete from "../assets/quiz-complete.png";
 
 const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState([]);
+  const [answer, setAnswer] = useState({
+    selectedAnswer: "",
+    isCorrect: null,
+  });
 
   const activeQuestionIndex = userAnswers.length;
   const currentQuestion = QUESTIONS[activeQuestionIndex];
 
-  const handleSelectAnswer = useCallback((selectedAnswer) => {
+  const handleUpdateAnswer = useCallback((selectedAnswer) => {
     setUserAnswers((prevUserAnswers) => [...prevUserAnswers, selectedAnswer]);
   }, []);
 
-  // const handleSkipAnswer = useCallback(
-  //   (skip) => handleSelectAnswer(skip),
-  //   [handleSelectAnswer]
-  // );
+  const handleSelectAnswer = (selectedAnswer) => {
+    setAnswer({
+      selectedAnswer,
+      isCorrect: null,
+    });
 
-  console.log(userAnswers);
+    setTimeout(() => {
+      const isCorrect = currentQuestion.answers[0] === selectedAnswer;
+      setAnswer({
+        selectedAnswer,
+        isCorrect,
+      });
+
+      setTimeout(() => {
+        setAnswer({
+          selectedAnswer: "",
+          isCorrect: null,
+        });
+        handleUpdateAnswer(selectedAnswer);
+      }, 2000);
+    }, 1000);
+  };
+
+  let answerState = "";
+  if (answer.selectedAnswer && answer.isCorrect !== null) {
+    answerState = answer.isCorrect ? "correct" : "wrong";
+  } else if (answer.selectedAnswer) {
+    answerState = "answered";
+  }
 
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
   if (quizIsComplete) {
@@ -32,24 +59,23 @@ const Quiz = () => {
     );
   }
 
-  const shuffledAnswers = [...currentQuestion.answers];
-  shuffledAnswers.sort(() => Math.random() - 0.5);
-
   return (
     <main id="quiz">
       <div id="question">
         <ProgressBar
           key={activeQuestionIndex}
           time={10000}
-          onTimeout={handleSelectAnswer}
+          onTimeout={handleUpdateAnswer}
         />
         <h2>{currentQuestion.text}</h2>
       </div>
-      <ul id="answers">
-        {shuffledAnswers.map((answer, index) => (
-          <Answer key={index} onSelect={handleSelectAnswer} answer={answer} />
-        ))}
-      </ul>
+      <Answers
+        key={activeQuestionIndex}
+        answers={currentQuestion.answers}
+        selectedAnswer={answer.selectedAnswer}
+        answerState={answerState}
+        onSelect={handleSelectAnswer}
+      />
     </main>
   );
 };
