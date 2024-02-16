@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 
-const ProgressBar = ({ time, onTimeout }) => {
+const ProgressBar = ({ time, onTimeout, mode }) => {
   const [remainingTime, setRemainingTime] = useState(time);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onTimeout(null);
-    }, time);
+    const timer = setTimeout(onTimeout, time);
 
     return () => clearTimeout(timer);
   }, [time, onTimeout]);
@@ -20,7 +18,12 @@ const ProgressBar = ({ time, onTimeout }) => {
   }, []);
 
   return (
-    <progress value={remainingTime} max={time} style={{ direction: "rtl" }} />
+    <progress
+      value={remainingTime}
+      max={time}
+      style={{ direction: "rtl" }}
+      className={mode}
+    />
   );
 };
 
