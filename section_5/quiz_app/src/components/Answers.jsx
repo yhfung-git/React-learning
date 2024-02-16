@@ -15,12 +15,19 @@ const Answers = ({ answers, selectedAnswer, answerState, onSelect }) => {
         const hasAnswer = answerState === "correct" || answerState === "wrong";
 
         let cssClass = "";
-        if (isSelected) cssClass = "selected";
-        if (hasAnswer && isSelected) cssClass = answerState;
+        if (answerState === "answered" && isSelected) {
+          cssClass = "selected";
+        } else if (hasAnswer && isSelected) {
+          cssClass = answerState;
+        }
 
         return (
           <li key={answer} className="answer">
-            <button className={cssClass} onClick={() => onSelect(answer)}>
+            <button
+              className={cssClass}
+              onClick={() => onSelect(answer)}
+              disabled={answerState !== ""}
+            >
               {answer}
             </button>
           </li>
