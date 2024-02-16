@@ -6,6 +6,7 @@ import Summary from "./Summary";
 import QUESTIONS from "../questions";
 
 const Quiz = () => {
+  const [start, setStart] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
@@ -13,14 +14,15 @@ const Quiz = () => {
   });
 
   let timer = 10000;
-  if (answer.selectedAnswer) {
-    timer = 1000;
-  } else if (answer.isCorrect !== null) {
-    timer = 2000;
-  }
+  if (answer.selectedAnswer) timer = 1000;
+  if (answer.isCorrect !== null) timer = 2000;
 
   const activeQuestionIndex = userAnswers.length;
   const currentQuestion = QUESTIONS[activeQuestionIndex];
+
+  const handleStart = () => {
+    setStart(true);
+  };
 
   const handleUpdateAnswer = useCallback((selectedAnswer) => {
     setUserAnswers((prevUserAnswers) => [...prevUserAnswers, selectedAnswer]);
@@ -66,24 +68,33 @@ const Quiz = () => {
   const timeoutHandler = answer.selectedAnswer === "" ? handleSkipAnswer : null;
 
   return (
-    <main id="quiz">
-      <div id="question">
-        <ProgressBar
-          key={activeQuestionIndex}
-          time={timer}
-          onTimeout={timeoutHandler}
-          mode={answerState}
-        />
-        <h2>{currentQuestion.text}</h2>
-      </div>
-      <Answers
-        key={activeQuestionIndex}
-        answers={currentQuestion.answers}
-        selectedAnswer={answer.selectedAnswer}
-        answerState={answerState}
-        onSelect={handleSelectAnswer}
-      />
-    </main>
+    <>
+      {!start && (
+        <div id="start">
+          <button onClick={handleStart}>Start</button>
+        </div>
+      )}
+      {start && (
+        <main id="quiz">
+          <div id="question">
+            <ProgressBar
+              key={activeQuestionIndex}
+              time={timer}
+              onTimeout={timeoutHandler}
+              mode={answerState}
+            />
+            <h2>{currentQuestion.text}</h2>
+          </div>
+          <Answers
+            key={activeQuestionIndex}
+            answers={currentQuestion.answers}
+            selectedAnswer={answer.selectedAnswer}
+            answerState={answerState}
+            onSelect={handleSelectAnswer}
+          />
+        </main>
+      )}
+    </>
   );
 };
 
