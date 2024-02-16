@@ -2,8 +2,8 @@ import { useState, useCallback } from "react";
 
 import Answers from "./Answers";
 import ProgressBar from "./ProgressBar";
+import Summary from "./Summary";
 import QUESTIONS from "../questions";
-import quizComplete from "../assets/quiz-complete.png";
 
 const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -11,6 +11,13 @@ const Quiz = () => {
     selectedAnswer: "",
     isCorrect: null,
   });
+
+  let timer = 10000;
+  if (answer.selectedAnswer) {
+    timer = 1000;
+  } else if (answer.isCorrect !== null) {
+    timer = 2000;
+  }
 
   const activeQuestionIndex = userAnswers.length;
   const currentQuestion = QUESTIONS[activeQuestionIndex];
@@ -42,6 +49,10 @@ const Quiz = () => {
     }, 1000);
   };
 
+  const handleSkipAnswer = useCallback(() => {
+    handleUpdateAnswer(null);
+  }, [handleUpdateAnswer]);
+
   let answerState = "";
   if (answer.selectedAnswer && answer.isCorrect !== null) {
     answerState = answer.isCorrect ? "correct" : "wrong";
@@ -50,22 +61,18 @@ const Quiz = () => {
   }
 
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
-  if (quizIsComplete) {
-    return (
-      <div id="summary">
-        <img src={quizComplete} alt="Trophy icon" />
-        <h2>Quiz Completed!</h2>
-      </div>
-    );
-  }
+  if (quizIsComplete) return <Summary userAnswers={userAnswers} />;
+
+  const timeoutHandler = answer.selectedAnswer === "" ? handleSkipAnswer : null;
 
   return (
     <main id="quiz">
       <div id="question">
         <ProgressBar
           key={activeQuestionIndex}
-          time={10000}
-          onTimeout={handleUpdateAnswer}
+          time={timer}
+          onTimeout={timeoutHandler}
+          mode={answerState}
         />
         <h2>{currentQuestion.text}</h2>
       </div>
