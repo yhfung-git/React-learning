@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header id="main-header">
       <img src={logoImg} alt="Magnifying glass analyzing a document" />
-      <h1>React - Behind The Scenes</h1>
+      <h1>Counter</h1>
     </header>
   );
 };
