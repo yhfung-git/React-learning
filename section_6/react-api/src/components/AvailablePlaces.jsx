@@ -57,7 +57,7 @@ const AvailablePlaces = ({ onSelectPlace }) => {
       title="Available Places"
       places={availablePlaces}
       isLoading={isLoading}
-      loadingText="Fetching places data..."
+      loadingText="Fetching available places..."
       fallbackText="No places available."
       onSelectPlace={onSelectPlace}
     />
