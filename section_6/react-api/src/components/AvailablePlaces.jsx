@@ -38,7 +38,9 @@ const AvailablePlaces = ({ onSelectPlace }) => {
         );
       } catch (error) {
         console.error(error);
-        setError(error);
+        setError({
+          message: error.message || "Failed to fetch places.",
+        });
         setIsLoading(false);
       }
     };
@@ -47,10 +49,7 @@ const AvailablePlaces = ({ onSelectPlace }) => {
   }, []);
 
   if (error) {
-    const errroMessage =
-      error.message || "Could not fetch places, please try again later.";
-
-    return <Error title="An error occurred!" message={errroMessage} />;
+    return <Error title="An error occurred!" message={error.message} />;
   }
 
   return (
