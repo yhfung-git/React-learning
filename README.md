@@ -40,7 +40,7 @@
 
 - Practice Project: Building a Quiz App
 
-### Section 6 ⏳
+### Section 6 ✅
 
 - A Look Behind The Scenes Of React & Optimization Techniques
 
@@ -48,7 +48,7 @@
 
 - Sending Http Requests (e.g Connecting to a Database)
 
-### Section 7 📌
+### Section 7 ⏳
 
 - Building Custom React Hooks
 
